@@ -2,6 +2,137 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="tw-space-y-8">
+    <!-- Hero Section -->
+    <div class="tw-bg-gradient-to-r tw-from-indigo-500 tw-to-purple-600 tw-rounded-xl tw-p-8 tw-text-white">
+        <div class="tw-max-w-3xl">
+            <h1 class="tw-text-4xl tw-font-bold tw-mb-4">
+                Welcome to MudBlazor PWA
+            </h1>
+            <p class="tw-text-xl tw-text-indigo-100 tw-mb-6">
+                A modern Progressive Web App built with MudBlazor and Tailwind CSS
+            </p>
+            <div class="tw-flex tw-space-x-4">
+                <button class="tw-bg-white tw-text-indigo-600 tw-px-6 tw-py-3 tw-rounded-lg tw-font-semibold hover:tw-bg-gray-100 tw-transition-colors">
+                    Get Started
+                </button>
+                <button class="tw-border-2 tw-border-white tw-text-white tw-px-6 tw-py-3 tw-rounded-lg tw-font-semibold hover:tw-bg-white hover:tw-text-indigo-600 tw-transition-colors">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </div>
 
-Welcome to your new app.
+    <!-- Stats Cards -->
+    <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-6">
+        <div class="tw-bg-white tw-rounded-lg tw-shadow-md tw-p-6 tw-border-l-4 tw-border-blue-500">
+            <div class="tw-flex tw-items-center">
+                <div class="tw-p-3 tw-bg-blue-100 tw-rounded-full tw-mr-4">
+                    <svg class="tw-w-6 tw-h-6 tw-text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="tw-text-sm tw-font-medium tw-text-gray-600">Components</p>
+                    <p class="tw-text-2xl tw-font-bold tw-text-gray-900">50+</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tw-bg-white tw-rounded-lg tw-shadow-md tw-p-6 tw-border-l-4 tw-border-green-500">
+            <div class="tw-flex tw-items-center">
+                <div class="tw-p-3 tw-bg-green-100 tw-rounded-full tw-mr-4">
+                    <svg class="tw-w-6 tw-h-6 tw-text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="tw-text-sm tw-font-medium tw-text-gray-600">Performance</p>
+                    <p class="tw-text-2xl tw-font-bold tw-text-gray-900">Fast</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tw-bg-white tw-rounded-lg tw-shadow-md tw-p-6 tw-border-l-4 tw-border-purple-500">
+            <div class="tw-flex tw-items-center">
+                <div class="tw-p-3 tw-bg-purple-100 tw-rounded-full tw-mr-4">
+                    <svg class="tw-w-6 tw-h-6 tw-text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="tw-text-sm tw-font-medium tw-text-gray-600">Modern</p>
+                    <p class="tw-text-2xl tw-font-bold tw-text-gray-900">Design</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="tw-bg-white tw-rounded-lg tw-shadow-md tw-p-8">
+        <h2 class="tw-text-2xl tw-font-bold tw-text-gray-900 tw-mb-6">Key Features</h2>
+        <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-8">
+            <div class="tw-flex tw-items-start tw-space-x-4">
+                <div class="tw-p-2 tw-bg-indigo-100 tw-rounded-lg">
+                    <svg class="tw-w-6 tw-h-6 tw-text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">MudBlazor Components</h3>
+                    <p class="tw-text-gray-600">Rich, customizable UI components built specifically for Blazor applications.</p>
+                </div>
+            </div>
+
+            <div class="tw-flex tw-items-start tw-space-x-4">
+                <div class="tw-p-2 tw-bg-green-100 tw-rounded-lg">
+                    <svg class="tw-w-6 tw-h-6 tw-text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">Tailwind CSS</h3>
+                    <p class="tw-text-gray-600">Utility-first CSS framework for rapid UI development with consistent design.</p>
+                </div>
+            </div>
+
+            <div class="tw-flex tw-items-start tw-space-x-4">
+                <div class="tw-p-2 tw-bg-purple-100 tw-rounded-lg">
+                    <svg class="tw-w-6 tw-h-6 tw-text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">Progressive Web App</h3>
+                    <p class="tw-text-gray-600">Offline-capable web application with native app-like experience.</p>
+                </div>
+            </div>
+
+            <div class="tw-flex tw-items-start tw-space-x-4">
+                <div class="tw-p-2 tw-bg-yellow-100 tw-rounded-lg">
+                    <svg class="tw-w-6 tw-h-6 tw-text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">C# & Blazor</h3>
+                    <p class="tw-text-gray-600">Build interactive web UIs using C# instead of JavaScript.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="tw-bg-gray-50 tw-rounded-lg tw-p-8 tw-text-center">
+        <h2 class="tw-text-2xl tw-font-bold tw-text-gray-900 tw-mb-4">Ready to get started?</h2>
+        <p class="tw-text-gray-600 tw-mb-6">Explore the navigation menu to see more features and examples.</p>
+        <div class="tw-flex tw-justify-center tw-space-x-4">
+            <button class="tw-bg-indigo-600 hover:tw-bg-indigo-700 tw-text-white tw-px-6 tw-py-3 tw-rounded-lg tw-font-semibold tw-transition-colors">
+                View Counter
+            </button>
+            <button class="tw-bg-gray-600 hover:tw-bg-gray-700 tw-text-white tw-px-6 tw-py-3 tw-rounded-lg tw-font-semibold tw-transition-colors">
+                Check Weather
+            </button>
+        </div>
+    </div>
+</div>

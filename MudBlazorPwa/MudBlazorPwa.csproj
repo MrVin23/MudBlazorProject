@@ -16,4 +16,43 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+  <!-- Tailwind CSS v3 Installation and Build Targets -->
+  <Target Name="Tailwind:Install" AfterTargets="AfterBuild">
+    <Message Importance="high" Text="=== INSTALLING TAILWIND CLI FOR WINDOWS ===" />
+    <Message Importance="high" Text="Downloading from: https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-windows-x64.exe" />
+    <Message Importance="high" Text="Destination: $(MSBuildProjectDirectory)" />
+    <DownloadFile SkipUnchangedFiles="true" DestinationFolder="$(MSBuildProjectDirectory)" SourceUrl="https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-windows-x64.exe">
+      <Output TaskParameter="DownloadedFile" PropertyName="TailwindExecutable" />
+    </DownloadFile>
+    <Message Importance="high" Text="Downloaded to: $(TailwindExecutable)" />
+    <Message Importance="high" Text="=========================================" />
+  </Target>
+  <Target Name="Tailwind:InstallLinux" AfterTargets="BeforeBuild" Condition="($([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64')">
+    <Message Importance="high" Text="Installing Tailwind CLI for Linux" />
+    <DownloadFile SkipUnchangedFiles="true" DestinationFolder="$(MSBuildProjectDirectory)" SourceUrl="https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-linux-x64">
+      <Output TaskParameter="DownloadedFile" PropertyName="TailwindExecutable" />
+    </DownloadFile>
+  </Target>
+  <Target Name="Tailwind:InstallMac" AfterTargets="BeforeBuild" Condition="($([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64')">
+    <Message Importance="high" Text="Installing Tailwind CLI for Intel Mac" />
+    <DownloadFile SkipUnchangedFiles="true" DestinationFolder="$(MSBuildProjectDirectory)" SourceUrl="https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-macos-x64">
+      <Output TaskParameter="DownloadedFile" PropertyName="TailwindExecutable" />
+    </DownloadFile>
+  </Target>
+  <Target Name="Tailwind:InstallMacArm" AfterTargets="BeforeBuild" Condition="($([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'ARM64')" >
+    <Message Importance="high" Text="Installing Tailwind CLI for Apple Silicon Mac" />
+    <DownloadFile SkipUnchangedFiles="true" DestinationFolder="$(MSBuildProjectDirectory)" SourceUrl="https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-macos-arm64">
+      <Output TaskParameter="DownloadedFile" PropertyName="TailwindExecutable" />
+    </DownloadFile>
+  </Target>
+  <Target Name="Tailwind:Permission" AfterTargets="BeforeBuild" Condition="($([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64') OR ($([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64') OR ($([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'ARM64')">
+    <Message Importance="high" Text="Making Tailwind CLI executable" />
+    <Exec Command="chmod +x $(TailwindExecutable)" />
+  </Target>
+  
+  <Target Name="Tailwind:Run" AfterTargets="AfterBuild" DependsOnTargets="Tailwind:Install;Tailwind:InstallLinux;Tailwind:InstallMac;Tailwind:InstallMacArm;Tailwind:Permission">
+    <Message Importance="high" Text="Building CSS with Tailwind" />
+    <Exec Command="$(TailwindExecutable) -i .\wwwroot\css\input.css -o .\wwwroot\css\output.min.css" />
+  </Target>
+
 </Project>
