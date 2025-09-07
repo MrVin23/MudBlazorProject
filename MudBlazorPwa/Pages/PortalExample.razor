@@ -1,0 +1,351 @@
+@page "/portal"
+
+<PageTitle>Portal Example</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="pa-4">
+    <!-- Header Section -->
+    <MudPaper Class="pa-6 mb-6" Elevation="2">
+        <MudStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+            <MudStack Row AlignItems="AlignItems.Center" Spacing="3">
+                <MudIcon Icon="@Icons.Material.Filled.Dashboard" Size="Size.Large" Color="Color.Primary" />
+                <div>
+                    <MudText Typo="Typo.h4" Class="mb-2">Portal Dashboard</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Comprehensive MudBlazor Components Showcase</MudText>
+                </div>
+            </MudStack>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Settings">
+                Settings
+            </MudButton>
+        </MudStack>
+    </MudPaper>
+
+    <!-- Quick Stats Cards -->
+    <MudGrid Class="mb-6">
+        <MudItem xs="12" sm="6" md="3">
+            <MudCard Elevation="2" Class="pa-4">
+                <MudStack Row AlignItems="AlignItems.Center" Spacing="3">
+                    <MudAvatar Color="Color.Primary" Size="Size.Large">
+                        <MudIcon Icon="@Icons.Material.Filled.People" />
+                    </MudAvatar>
+                    <div>
+                        <MudText Typo="Typo.h6">1,234</MudText>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">Total Users</MudText>
+                    </div>
+                </MudStack>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudCard Elevation="2" Class="pa-4">
+                <MudStack Row AlignItems="AlignItems.Center" Spacing="3">
+                    <MudAvatar Color="Color.Success" Size="Size.Large">
+                        <MudIcon Icon="@Icons.Material.Filled.TrendingUp" />
+                    </MudAvatar>
+                    <div>
+                        <MudText Typo="Typo.h6">98.5%</MudText>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">Uptime</MudText>
+                    </div>
+                </MudStack>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudCard Elevation="2" Class="pa-4">
+                <MudStack Row AlignItems="AlignItems.Center" Spacing="3">
+                    <MudAvatar Color="Color.Warning" Size="Size.Large">
+                        <MudIcon Icon="@Icons.Material.Filled.Storage" />
+                    </MudAvatar>
+                    <div>
+                        <MudText Typo="Typo.h6">2.4TB</MudText>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">Storage Used</MudText>
+                    </div>
+                </MudStack>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudCard Elevation="2" Class="pa-4">
+                <MudStack Row AlignItems="AlignItems.Center" Spacing="3">
+                    <MudAvatar Color="Color.Info" Size="Size.Large">
+                        <MudIcon Icon="@Icons.Material.Filled.Speed" />
+                    </MudAvatar>
+                    <div>
+                        <MudText Typo="Typo.h6">45ms</MudText>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">Avg Response</MudText>
+                    </div>
+                </MudStack>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+
+    <!-- Main Content Grid -->
+    <MudGrid>
+        <!-- Left Column -->
+        <MudItem xs="12" md="8">
+            <!-- Data Table -->
+            <MudCard Elevation="2" Class="mb-4">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h6">Recent Activity</MudText>
+                    </CardHeaderContent>
+                    <CardHeaderActions>
+                        <MudIconButton Icon="@Icons.Material.Filled.Refresh" OnClick="RefreshData" />
+                    </CardHeaderActions>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudDataGrid Items="@recentActivities" Filterable="true" SortMode="SortMode.Multiple" Hover="true" Dense="true">
+                        <Columns>
+                            <PropertyColumn Property="x => x.User" Title="User" />
+                            <PropertyColumn Property="x => x.Action" Title="Action" />
+                            <PropertyColumn Property="x => x.Timestamp" Title="Time" Format="yyyy-MM-dd HH:mm" />
+                            <TemplateColumn Title="Status" Sortable="false">
+                                <CellTemplate>
+                                    <MudChip Color="@GetStatusColor(context.Item.Status)" Size="Size.Small">
+                                        @(context.Item.Status ?? "Unknown")
+                                    </MudChip>
+                                </CellTemplate>
+                            </TemplateColumn>
+                        </Columns>
+                    </MudDataGrid>
+                </MudCardContent>
+            </MudCard>
+
+            <!-- Charts Section -->
+            <MudCard Elevation="2">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h6">Performance Metrics</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTabs Elevation="0" PanelClass="pa-0">
+                        <MudTabPanel Text="CPU Usage">
+                            <MudProgressCircular Color="Color.Primary" Value="75" Size="Size.Large" Indeterminate="false" />
+                            <MudText Typo="Typo.body2" Class="mt-2">75% CPU Usage</MudText>
+                        </MudTabPanel>
+                        <MudTabPanel Text="Memory">
+                            <MudProgressCircular Color="Color.Success" Value="60" Size="Size.Large" Indeterminate="false" />
+                            <MudText Typo="Typo.body2" Class="mt-2">60% Memory Usage</MudText>
+                        </MudTabPanel>
+                        <MudTabPanel Text="Network">
+                            <MudProgressCircular Color="Color.Warning" Value="45" Size="Size.Large" Indeterminate="false" />
+                            <MudText Typo="Typo.body2" Class="mt-2">45% Network Usage</MudText>
+                        </MudTabPanel>
+                    </MudTabs>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <!-- Right Column -->
+        <MudItem xs="12" md="4">
+            <!-- Quick Actions -->
+            <MudCard Elevation="2" Class="mb-4">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h6">Quick Actions</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudStack Spacing="2">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" StartIcon="@Icons.Material.Filled.Add">
+                            Create New Project
+                        </MudButton>
+                        <MudButton Variant="Variant.Outlined" Color="Color.Secondary" FullWidth="true" StartIcon="@Icons.Material.Filled.Upload">
+                            Upload Files
+                        </MudButton>
+                        <MudButton Variant="Variant.Text" Color="Color.Info" FullWidth="true" StartIcon="@Icons.Material.Filled.Share">
+                            Share Dashboard
+                        </MudButton>
+                        <MudButton Variant="Variant.Text" Color="Color.Warning" FullWidth="true" StartIcon="@Icons.Material.Filled.Download">
+                            Export Data
+                        </MudButton>
+                    </MudStack>
+                </MudCardContent>
+            </MudCard>
+
+            <!-- Notifications -->
+            <MudCard Elevation="2" Class="mb-4">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h6">Notifications</MudText>
+                    </CardHeaderContent>
+                    <CardHeaderActions>
+                        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" OnClick="ShowNotificationMenu" />
+                    </CardHeaderActions>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudStack Spacing="3">
+                        @foreach (var notification in notifications)
+                        {
+                            <MudAlert Severity="@notification.Severity" Dense="true" ShowCloseIcon="true" onClose="@(() => RemoveNotification(notification))">
+                                <MudText Typo="Typo.body2">@notification.Message</MudText>
+                            </MudAlert>
+                        }
+                    </MudStack>
+                </MudCardContent>
+            </MudCard>
+
+            <!-- User Profile Card -->
+            <MudCard Elevation="2">
+                <MudCardContent Class="pa-4">
+                    <MudStack Row AlignItems="AlignItems.Center" Spacing="3" Class="mb-4">
+                        <MudAvatar Size="Size.Large" Color="Color.Primary">
+                            <MudIcon Icon="@Icons.Material.Filled.Person" />
+                        </MudAvatar>
+                        <div>
+                            <MudText Typo="Typo.h6">John Doe</MudText>
+                            <MudText Typo="Typo.body2" Color="Color.Secondary">Administrator</MudText>
+                        </div>
+                    </MudStack>
+                    <MudDivider Class="my-3" />
+                    <MudStack Spacing="2">
+                        <MudTextField @bind-Value="userEmail" Label="Email" Variant="Variant.Outlined" ReadOnly="true" />
+                        <MudTextField @bind-Value="lastLogin" Label="Last Login" Variant="Variant.Outlined" ReadOnly="true" />
+                        <MudButton Variant="Variant.Text" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Edit">
+                            Edit Profile
+                        </MudButton>
+                    </MudStack>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+
+    <!-- Dialog Examples -->
+    <MudDialog @bind-isVisible="showCreateDialog" Options="dialogOptions">
+        <DialogContent>
+            <MudText Typo="Typo.h6" Class="mb-4">Create New Project</MudText>
+            <MudForm @ref="form" @bind-IsValid="@isFormValid" @bind-Errors="@errors">
+                <MudTextField @bind-Value="newProject.Name" Label="Project Name" Required="true" RequiredError="Project name is required" />
+                <MudTextField @bind-Value="newProject.Description" Label="Description" Lines="3" />
+                <MudSelect @bind-Value="newProject.Category" Label="Category" Required="true">
+                    <MudSelectItem Value="@("Web Development")">Web Development</MudSelectItem>
+                    <MudSelectItem Value="@("Mobile App")">Mobile App</MudSelectItem>
+                    <MudSelectItem Value="@("Desktop App")">Desktop App</MudSelectItem>
+                </MudSelect>
+            </MudForm>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="CloseCreateDialog">Cancel</MudButton>
+            <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="CreateProject" Disabled="@(!isFormValid)">
+                Create
+            </MudButton>
+        </DialogActions>
+    </MudDialog>
+
+    <!-- Snackbar for notifications -->
+    <MudSnackbarProvider />
+
+    <!-- Menu for notifications -->
+    <MudMenu @bind-Open="notificationMenuOpen" AnchorOrigin="Origin.TopRight" TransformOrigin="Origin.TopRight">
+        <ActivatorContent>
+            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" />
+        </ActivatorContent>
+        <ChildContent>
+            <MudMenuItem OnClick="MarkAllAsRead">Mark All as Read</MudMenuItem>
+            <MudMenuItem OnClick="ClearAllNotifications">Clear All</MudMenuItem>
+        </ChildContent>
+    </MudMenu>
+</MudContainer>
+
+@code {
+    private bool showCreateDialog = false;
+    private bool notificationMenuOpen = false;
+    private bool isFormValid = false;
+    private MudForm? form;
+    private string[] errors = { };
+    
+    private DialogOptions dialogOptions = new() { MaxWidth = MaxWidth.Small, FullWidth = true };
+    
+    private string userEmail = "john.doe@example.com";
+    private string lastLogin = "2024-01-15 14:30";
+    
+    private ProjectModel newProject = new();
+    
+    private List<ActivityModel> recentActivities = new()
+    {
+        new() { User = "Alice Johnson", Action = "Created Project", Timestamp = DateTime.Now.AddHours(-2), Status = "Success" },
+        new() { User = "Bob Smith", Action = "Updated Settings", Timestamp = DateTime.Now.AddHours(-4), Status = "Success" },
+        new() { User = "Carol Davis", Action = "Deleted File", Timestamp = DateTime.Now.AddHours(-6), Status = "Warning" },
+        new() { User = "David Wilson", Action = "Logged In", Timestamp = DateTime.Now.AddHours(-8), Status = "Success" },
+        new() { User = "Eva Brown", Action = "Failed Login", Timestamp = DateTime.Now.AddHours(-10), Status = "Error" }
+    };
+    
+    private List<NotificationModel> notifications = new()
+    {
+        new() { Message = "System maintenance scheduled for tonight", Severity = Severity.Info },
+        new() { Message = "New user registration completed", Severity = Severity.Success },
+        new() { Message = "High CPU usage detected", Severity = Severity.Warning },
+        new() { Message = "Database backup failed", Severity = Severity.Error }
+    };
+    
+    private Color GetStatusColor(string? status)
+    {
+        return status switch
+        {
+            "Success" => Color.Success,
+            "Warning" => Color.Warning,
+            "Error" => Color.Error,
+            _ => Color.Default
+        };
+    }
+    
+    private void RefreshData()
+    {
+        // Simulate data refresh
+        StateHasChanged();
+    }
+    
+    private void ShowNotificationMenu()
+    {
+        notificationMenuOpen = true;
+    }
+    
+    private void RemoveNotification(NotificationModel notification)
+    {
+        notifications.Remove(notification);
+    }
+    
+    private void CloseCreateDialog()
+    {
+        showCreateDialog = false;
+        newProject = new();
+    }
+    
+    private void CreateProject()
+    {
+        if (isFormValid)
+        {
+            // Simulate project creation
+            showCreateDialog = false;
+            newProject = new();
+        }
+    }
+    
+    private void MarkAllAsRead()
+    {
+        // Implementation for marking all notifications as read
+    }
+    
+    private void ClearAllNotifications()
+    {
+        notifications.Clear();
+    }
+    
+    public class ActivityModel
+    {
+        public string? User { get; set; }
+        public string? Action { get; set; }
+        public DateTime Timestamp { get; set; }
+        public string? Status { get; set; }
+    }
+    
+    public class NotificationModel
+    {
+        public string? Message { get; set; }
+        public Severity Severity { get; set; }
+    }
+    
+    public class ProjectModel
+    {
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public string? Category { get; set; }
+    }
+}
